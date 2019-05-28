@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Card, CardHeader, CardBody, Table } from 'reactstrap';
+import { Card, CardHeader, CardBody, Table, ButtonGroup } from 'reactstrap';
+
+import EditBarang from './EditBarang';
 
 class KelolaBarang extends Component {
   render() {
@@ -26,7 +28,11 @@ class KelolaBarang extends Component {
                     <td>
                       {item.stok} {item.satuan}
                     </td>
-                    <td>Aksi</td>
+                    <td>
+                      <ButtonGroup size="sm">
+                        <EditBarang barang={item} />
+                      </ButtonGroup>
+                    </td>
                   </tr>
                 ))}
               </tbody>
