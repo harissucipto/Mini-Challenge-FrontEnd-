@@ -1,6 +1,9 @@
 import React from 'react';
 import { Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 
+import { stokBarang } from './data';
+import KelolaBarang from './components/KelolaBarang';
+
 const Aplikasi = () => {
   return (
     <div>
@@ -12,10 +15,7 @@ const Aplikasi = () => {
           </Card>
         </Col>
         <Col md={8}>
-          <Card>
-            <CardHeader>Stok Barang</CardHeader>
-            <CardBody>Data Stok Barang</CardBody>
-          </Card>
+          <KelolaBarang data={stokBarang} />
         </Col>
       </Row>
     </div>
