@@ -10,6 +10,7 @@ import {
 
 import EditBarang from './EditBarang';
 import HapusBarang from './HapusBarang';
+import DetailBarang from './DetailBarang';
 
 class KelolaBarang extends Component {
   render() {
@@ -38,7 +39,9 @@ class KelolaBarang extends Component {
               <tbody>
                 {data.map(item => (
                   <tr key={item.id}>
-                    <td>{item.nama}</td>
+                    <td>
+                      <DetailBarang barang={item} />
+                    </td>
                     <td>
                       {item.stok} {item.satuan}
                     </td>
