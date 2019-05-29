@@ -10,37 +10,31 @@ import {
   Input,
   Col
 } from 'reactstrap';
+import shortid from 'shortid';
 
-class EditBarang extends Component {
+class TambahBarang extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
+    nama: '',
+    stok: 0,
+    satuan: '',
+    deskripsi: ''
   };
-
-  componentWillMount() {
-    const { id, nama, stok, satuan, deskripsi } = this.props.barang;
-
-    this.setState({
-      id,
-      nama,
-      stok,
-      satuan,
-      deskripsi
-    });
-  }
 
   onChange = e => this.setState({ [e.target.id]: e.target.value });
 
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
 
   submit = () => {
-    const { id, nama, stok, satuan, deskripsi } = this.state;
+    const { nama, stok, satuan, deskripsi } = this.state;
     this.props.aksi({
-      id,
+      id: shortid(),
       nama,
       stok,
       satuan,
       deskripsi
     });
+    this.setState({ isOpen: false });
   };
 
   render() {
@@ -48,8 +42,8 @@ class EditBarang extends Component {
 
     return (
       <>
-        <Button onClick={this.toggle} className="mr-1">
-          Edit
+        <Button onClick={this.toggle} className="mr-1 btn-primary mb-3">
+          Tambah Data Barang
         </Button>
         <Modal
           size="big"
@@ -57,7 +51,7 @@ class EditBarang extends Component {
           toggle={this.toggle}
           className={this.props.className}
         >
-          <ModalHeader toggle={this.toggle}>Edit Data Barang</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Tambah Data Barang</ModalHeader>
           <ModalBody>
             <FormGroup>
               <Label htmlFor="nama">Nama Barang</Label>
@@ -124,4 +118,4 @@ class EditBarang extends Component {
   }
 }
 
-export default EditBarang;
+export default TambahBarang;

@@ -11,10 +11,11 @@ import {
 import EditBarang from './EditBarang';
 import HapusBarang from './HapusBarang';
 import DetailBarang from './DetailBarang';
+import TambahBarang from './TambahBarang';
 
 class KelolaBarang extends Component {
   render() {
-    const { state, editData, hapusData } = this.props;
+    const { state, editData, hapusData, tambahData } = this.props;
     const { data, loading } = state;
     if (loading)
       return (
@@ -25,6 +26,7 @@ class KelolaBarang extends Component {
       <Card>
         <CardHeader>Kelola Stok Barang</CardHeader>
         <CardBody>
+          <TambahBarang aksi={tambahData} />
           {!data.length ? (
             <p>Belum Ada Data</p>
           ) : (

@@ -13,7 +13,6 @@ class OlahBarang extends Container {
   };
 
   tambahData = baru => {
-    console.log(baru, 'ini baru');
     this.setState({
       data: [...this.state.data, baru]
     });
