@@ -32,6 +32,10 @@ class EditBarang extends Component {
 
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
 
+  submit = () => {
+    this.props.aksi({ ...this.state });
+  };
+
   render() {
     const { isOpen, nama, stok, satuan, deskripsi } = this.state;
 
@@ -100,7 +104,7 @@ class EditBarang extends Component {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
+            <Button color="primary" onClick={this.submit}>
               Simpan
             </Button>{' '}
             <Button color="secondary" onClick={this.toggle}>

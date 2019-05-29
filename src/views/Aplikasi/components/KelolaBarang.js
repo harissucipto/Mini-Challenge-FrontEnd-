@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
-import { Card, CardHeader, CardBody, Table, ButtonGroup } from 'reactstrap';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Table,
+  ButtonGroup,
+  Spinner
+} from 'reactstrap';
 
 import EditBarang from './EditBarang';
+import HapusBarang from './HapusBarang';
 
 class KelolaBarang extends Component {
   render() {
-    const { data } = this.props;
+    const { state, editData, hapusData } = this.props;
+    const { data, loading } = state;
+    if (loading)
+      return (
+        <Spinner title="Loading... Mengambil Data Stok Barang" size="lg" />
+      );
+
     return (
       <Card>
         <CardHeader>Kelola Stok Barang</CardHeader>
@@ -30,7 +44,8 @@ class KelolaBarang extends Component {
                     </td>
                     <td>
                       <ButtonGroup size="sm">
-                        <EditBarang barang={item} />
+                        <EditBarang barang={item} aksi={editData} />
+                        <HapusBarang barang={item} aksi={hapusData} />
                       </ButtonGroup>
                     </td>
                   </tr>
