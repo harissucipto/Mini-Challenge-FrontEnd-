@@ -29,7 +29,7 @@ class KelolaBarang extends Component {
           ) : (
             <Table responsive bordered>
               <thead>
-                <tr>
+                <tr className="text-center">
                   <th>Nama Barang</th>
                   <th>Stok Barang</th>
                   <th>Aksi</th>
@@ -42,7 +42,7 @@ class KelolaBarang extends Component {
                     <td>
                       {item.stok} {item.satuan}
                     </td>
-                    <td>
+                    <td className="text-center">
                       <ButtonGroup size="sm">
                         <EditBarang barang={item} aksi={editData} />
                         <HapusBarang barang={item} aksi={hapusData} />

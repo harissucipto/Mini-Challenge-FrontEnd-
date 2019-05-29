@@ -37,7 +37,10 @@ class EditBarang extends Component {
         >
           <ModalHeader toggle={this.toggle}>Edit Data Barang</ModalHeader>
           <ModalBody>
-            <h3>Yakin Akan Menghapus Item {nama} ini ? </h3>
+            <p>
+              Yakin Akan Menghapus Item{' '}
+              <span className="text-danger">{nama}</span> ini ?{' '}
+            </p>
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.submit}>
