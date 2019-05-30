@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { Subscribe } from 'unstated';
-import { Redirect } from 'react-router-dom';
 
 import KelolaBarang from './components/KelolaBarang';
 import OlahBarang from './components/OlahBarang';

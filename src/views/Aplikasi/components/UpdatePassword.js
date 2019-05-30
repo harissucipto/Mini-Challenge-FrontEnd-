@@ -43,12 +43,12 @@ class EditBarang extends Component {
   };
 
   render() {
-    const { isOpen, nama, alamat, nomorTelepon } = this.state;
+    const { isOpen, nama, nomorTelepon } = this.state;
 
     return (
       <>
         <Button onClick={this.toggle} className="mr-1">
-          Update Informasi
+          Update Password
         </Button>
         <Modal
           size="big"
@@ -59,7 +59,7 @@ class EditBarang extends Component {
           <ModalHeader toggle={this.toggle}>Edit Informasi Akun</ModalHeader>
           <ModalBody>
             <FormGroup>
-              <Label htmlFor="nama">Nama Pengguna</Label>
+              <Label htmlFor="nama">Password Lama</Label>
               <Input
                 type="text"
                 id="nama"
@@ -70,7 +70,7 @@ class EditBarang extends Component {
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="nama">Nomor Telepon</Label>
+              <Label htmlFor="nama">Password Baru</Label>
               <Input
                 type="text"
                 id="nomorTelepon"
@@ -81,14 +81,12 @@ class EditBarang extends Component {
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="deskripsi">Alamat</Label>
+              <Label htmlFor="nama">Ulangi Password Baru</Label>
               <Input
-                value={alamat}
-                type="textarea"
-                name="alamat"
-                id="alamat"
-                rows="9"
-                placeholder="Masukan Alamat Pengguna"
+                type="text"
+                id="nomorTelepon"
+                placeholder="Masukan Nomor Telepon"
+                value={nomorTelepon}
                 onChange={this.onChange}
               />
             </FormGroup>

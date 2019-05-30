@@ -12,6 +12,7 @@ import {
 } from 'reactstrap';
 
 import UpdateInfromasiAkun from './UpdateInfromasiAkun';
+import UpdatePassword from './UpdatePassword';
 
 class InformasiAkun extends Component {
   render() {
@@ -48,7 +49,7 @@ class InformasiAkun extends Component {
             <ListGroupItem action>
               <ListGroupItemHeading>Aksi</ListGroupItemHeading>
               <ButtonGroup>
-                <Button className="mr-2">Update Password</Button>
+                <UpdatePassword data={state} aksi={updateAkun} />
                 <UpdateInfromasiAkun data={state} aksi={updateAkun} />
               </ButtonGroup>
             </ListGroupItem>
