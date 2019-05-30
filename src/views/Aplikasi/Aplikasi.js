@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import { Subscribe } from 'unstated';
+import { Redirect } from 'react-router-dom';
 
 import KelolaBarang from './components/KelolaBarang';
 import OlahBarang from './components/OlahBarang';
+import OlahAkun from './components/OlahAkun';
+import InformasiAkun from './components/InformasiAkun';
 
 class ProsesData extends Component {
   componentDidMount() {
@@ -11,16 +14,13 @@ class ProsesData extends Component {
   }
 
   render() {
-    const { stokBarang } = this.props;
+    const { stokBarang, olahAkun } = this.props;
 
     return (
       <div>
         <Row>
           <Col md={4}>
-            <Card>
-              <CardHeader>Informasi User</CardHeader>
-              <CardBody>Profil User</CardBody>
-            </Card>
+            <InformasiAkun {...olahAkun} />
           </Col>
           <Col md={8}>
             <KelolaBarang {...stokBarang} />
@@ -33,8 +33,10 @@ class ProsesData extends Component {
 
 const Aplikasi = () => {
   return (
-    <Subscribe to={[OlahBarang]}>
-      {stokBarang => <ProsesData stokBarang={stokBarang} />}
+    <Subscribe to={[OlahBarang, OlahAkun]}>
+      {(stokBarang, olahAkun) => (
+        <ProsesData stokBarang={stokBarang} olahAkun={olahAkun} />
+      )}
     </Subscribe>
   );
 };

@@ -6,6 +6,7 @@ import './App.scss';
 
 // stated
 import OlahBarang from './views/Aplikasi/components/OlahBarang';
+import OlahAkun from './views/Aplikasi/components/OlahAkun';
 
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">Loading...</div>
@@ -23,7 +24,7 @@ const Page500 = React.lazy(() => import('./views/Pages/Page500'));
 class App extends Component {
   render() {
     return (
-      <Provider inject={[OlahBarang]}>
+      <Provider inject={[OlahBarang, OlahAkun]}>
         <HashRouter>
           <React.Suspense fallback={loading()}>
             <Switch>
