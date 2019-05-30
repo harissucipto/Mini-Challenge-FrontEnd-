@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { Subscribe } from 'unstated';
+import { Redirect } from 'react-router-dom';
 
 import KelolaBarang from './components/KelolaBarang';
 import OlahBarang from './components/OlahBarang';
@@ -15,14 +16,18 @@ class ProsesData extends Component {
   render() {
     const { stokBarang, olahAkun } = this.props;
 
+    const { uid } = olahAkun.state;
+
+    if (!uid) return <Redirect to="/login" />;
+
     return (
       <div>
         <Row>
-          <Col md={4}>
-            <InformasiAkun {...olahAkun} />
-          </Col>
           <Col md={8}>
             <KelolaBarang {...stokBarang} />
+          </Col>
+          <Col md={4}>
+            <InformasiAkun {...olahAkun} />
           </Col>
         </Row>
       </div>

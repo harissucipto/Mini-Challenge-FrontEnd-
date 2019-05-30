@@ -48,14 +48,15 @@ class EditBarang extends Component {
 
     return (
       <>
-        <Button onClick={this.toggle} className="mr-1">
-          Edit
+        <Button onClick={this.toggle} className="mr-1" color="warning">
+          <i className="fa fa-edit" />
+          &nbsp;Edit
         </Button>
         <Modal
           size="big"
           isOpen={isOpen}
           toggle={this.toggle}
-          className={this.props.className}
+          className="modal-warning"
         >
           <ModalHeader toggle={this.toggle}>Edit Data Barang</ModalHeader>
           <ModalBody>
@@ -111,7 +112,7 @@ class EditBarang extends Component {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.submit}>
+            <Button color="warning" onClick={this.submit}>
               Simpan
             </Button>{' '}
             <Button color="secondary" onClick={this.toggle}>

@@ -47,14 +47,14 @@ class EditBarang extends Component {
 
     return (
       <>
-        <Button onClick={this.toggle} className="mr-1">
+        <Button onClick={this.toggle} className="mr-1 btn-pill" color="warning">
           Update Password
         </Button>
         <Modal
           size="big"
           isOpen={isOpen}
           toggle={this.toggle}
-          className={this.props.className}
+          className="modal-warning"
         >
           <ModalHeader toggle={this.toggle}>Edit Informasi Akun</ModalHeader>
           <ModalBody>
@@ -92,7 +92,7 @@ class EditBarang extends Component {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.submit}>
+            <Button color="warning" onClick={this.submit}>
               Simpan
             </Button>{' '}
             <Button color="secondary" onClick={this.toggle}>

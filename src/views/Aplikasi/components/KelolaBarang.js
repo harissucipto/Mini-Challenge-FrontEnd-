@@ -23,8 +23,8 @@ class KelolaBarang extends Component {
       );
 
     return (
-      <Card>
-        <CardHeader>
+      <Card className="card-accent-primary">
+        <CardHeader className="bg-primary">
           <strong>Kelola Stok Barang</strong>
         </CardHeader>
         <CardBody>

@@ -42,14 +42,16 @@ class TambahBarang extends Component {
 
     return (
       <>
-        <Button onClick={this.toggle} className="mr-1 btn-primary mb-3">
-          Tambah Data Barang
+        <Button color="primary" onClick={this.toggle} className="mb-4">
+          <i className="fa fa-plus" />
+          &nbsp;Tambah Data Barang
         </Button>
+
         <Modal
           size="big"
           isOpen={isOpen}
           toggle={this.toggle}
-          className={this.props.className}
+          className="modal-primary"
         >
           <ModalHeader toggle={this.toggle}>Tambah Data Barang</ModalHeader>
           <ModalBody>

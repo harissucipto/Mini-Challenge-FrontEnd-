@@ -32,12 +32,12 @@ class DetailBarang extends Component {
           size="md"
           isOpen={isOpen}
           toggle={this.toggle}
-          className={this.props.className}
+          className="text-white"
         >
-          <ModalHeader toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle} className="bg-info">
             Detail Informasi Barang
           </ModalHeader>
-          <ModalBody>
+          <ModalBody className="bg-info">
             <ul>
               <li>Nama: {nama}</li>
               <li>

@@ -7,7 +7,6 @@ import {
   ListGroupItemHeading,
   ListGroupItemText,
   CardBody,
-  Button,
   ButtonGroup
 } from 'reactstrap';
 
@@ -21,7 +20,7 @@ class InformasiAkun extends Component {
 
     return (
       <Card>
-        <CardHeader>
+        <CardHeader className="bg-success">
           <strong>Informasi Akun</strong>
         </CardHeader>
         <CardBody>

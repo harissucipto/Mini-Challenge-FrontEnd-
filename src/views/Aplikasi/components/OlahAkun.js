@@ -13,15 +13,15 @@ const resetPengguna = {
 
 class OlahAkun extends Container {
   state = {
-    // ...resetPengguna
-    uid: '3232',
-    nama: 'harissucipto',
-    email: 'haris@gmail.com',
-    nomorTelepon: '08932034',
-    alamat: 'JL SEI',
-    password: '123',
-    textEror: '',
-    loading: false
+    ...resetPengguna
+    // uid: '3232',
+    // nama: 'harissucipto',
+    // email: 'haris@gmail.com',
+    // nomorTelepon: '08932034',
+    // alamat: 'JL SEI',
+    // password: '123',
+    // textEror: '',
+    // loading: false
   };
 
   login = (email, password) => {
@@ -29,6 +29,7 @@ class OlahAkun extends Container {
     this.setState({ erorText: '' });
     const correctPassword = password === '123';
     if (correctEmail && correctPassword) {
+      console.log('berhasil login');
       this.setState({
         uid: '3232',
         nama: 'harissucipto',
