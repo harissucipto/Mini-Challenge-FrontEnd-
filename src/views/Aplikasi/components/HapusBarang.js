@@ -7,10 +7,10 @@ class EditBarang extends Component {
   };
 
   componentWillMount() {
-    const { id, nama } = this.props.barang;
+    const { _id, nama } = this.props.barang;
 
     this.setState({
-      id,
+      _id,
       nama
     });
   }
@@ -18,7 +18,11 @@ class EditBarang extends Component {
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
 
   submit = () => {
-    this.props.aksi(this.state.id);
+    this.props.aksi(
+      this.state._id,
+      this.props.akun.state._id,
+      this.props.akun.state.jwt
+    );
   };
 
   render() {
