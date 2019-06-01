@@ -15,7 +15,7 @@ import TambahBarang from './TambahBarang';
 
 class KelolaBarang extends Component {
   render() {
-    const { state, editData, hapusData, tambahData } = this.props;
+    const { state, editData, hapusData, tambahData, akun } = this.props;
     const { data, loading } = state;
     if (loading)
       return (
@@ -42,17 +42,21 @@ class KelolaBarang extends Component {
               </thead>
               <tbody>
                 {data.map(item => (
-                  <tr key={item.id}>
+                  <tr key={item._id}>
                     <td>
                       <DetailBarang barang={item} />
                     </td>
                     <td>
-                      {item.stok} {item.satuan}
+                      {item.stok || 0} {item.satuan}
                     </td>
                     <td className="text-center">
                       <ButtonGroup size="sm">
-                        <EditBarang barang={item} aksi={editData} />
-                        <HapusBarang barang={item} aksi={hapusData} />
+                        <EditBarang barang={item} aksi={editData} akun={akun} />
+                        <HapusBarang
+                          barang={item}
+                          aksi={hapusData}
+                          akun={akun}
+                        />
                       </ButtonGroup>
                     </td>
                   </tr>

@@ -7,22 +7,22 @@ import {
   ModalFooter,
   FormGroup,
   Label,
-  Input
+  Input,
+  Spinner
 } from 'reactstrap';
 
 class EditBarang extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
+    loading: false
   };
 
   componentWillMount() {
-    const { uid, nama, alamat, nomorTelepon } = this.props.data;
+    const { name, email } = this.props.data;
 
     this.setState({
-      uid,
-      nama,
-      alamat,
-      nomorTelepon
+      name,
+      email
     });
   }
 
@@ -30,20 +30,21 @@ class EditBarang extends Component {
 
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
 
-  submit = () => {
-    const { uid, nama, alamat, nomorTelepon } = this.state;
-    this.props.aksi({
-      uid,
-      nama,
-      alamat,
-      nomorTelepon
+  submit = async () => {
+    const { name, email } = this.state;
+    this.setState({ loding: true });
+
+    const resp = await this.props.aksi({
+      name,
+      email
     });
 
-    this.setState({ isOpen: false });
+    console.log(resp);
+    this.setState({ loading: false });
   };
 
   render() {
-    const { isOpen, nama, alamat, nomorTelepon } = this.state;
+    const { isOpen, name, email, loading } = this.state;
 
     return (
       <>
@@ -58,37 +59,27 @@ class EditBarang extends Component {
         >
           <ModalHeader toggle={this.toggle}>Edit Informasi Akun</ModalHeader>
           <ModalBody>
+            {loading && <Spinner title="loading..." />}
             <FormGroup>
-              <Label htmlFor="nama">Nama Pengguna</Label>
+              <Label htmlFor="name">Nama Pengguna</Label>
               <Input
                 type="text"
-                id="nama"
+                id="name"
+                required
                 placeholder="Masukan Nama Pengguna"
-                value={nama}
+                value={name}
                 onChange={this.onChange}
               />
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="nama">Nomor Telepon</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
-                type="text"
-                id="nomorTelepon"
-                placeholder="Masukan Nomor Telepon"
-                value={nomorTelepon}
-                onChange={this.onChange}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <Label htmlFor="deskripsi">Alamat</Label>
-              <Input
-                value={alamat}
-                type="textarea"
-                name="alamat"
-                id="alamat"
-                rows="9"
-                placeholder="Masukan Alamat Pengguna"
+                type="email"
+                id="email"
+                required
+                placeholder="Masukan Email"
+                value={email}
                 onChange={this.onChange}
               />
             </FormGroup>

@@ -16,7 +16,7 @@ import UpdatePassword from './UpdatePassword';
 class InformasiAkun extends Component {
   render() {
     const { state, updateAkun } = this.props;
-    const { nama, email, alamat, nomorTelepon } = state;
+    const { name, email } = state;
 
     return (
       <Card>
@@ -27,22 +27,12 @@ class InformasiAkun extends Component {
           <ListGroup>
             <ListGroupItem>
               <ListGroupItemHeading>Nama Pengguna</ListGroupItemHeading>
-              <ListGroupItemText>{nama}</ListGroupItemText>
+              <ListGroupItemText>{name}</ListGroupItemText>
             </ListGroupItem>
 
             <ListGroupItem>
               <ListGroupItemHeading>Email</ListGroupItemHeading>
               <ListGroupItemText>{email}</ListGroupItemText>
-            </ListGroupItem>
-
-            <ListGroupItem>
-              <ListGroupItemHeading>Alamat</ListGroupItemHeading>
-              <ListGroupItemText>{alamat}</ListGroupItemText>
-            </ListGroupItem>
-
-            <ListGroupItem>
-              <ListGroupItemHeading>Nomor Telepon</ListGroupItemHeading>
-              <ListGroupItemText>{nomorTelepon}</ListGroupItemText>
             </ListGroupItem>
 
             <ListGroupItem action>

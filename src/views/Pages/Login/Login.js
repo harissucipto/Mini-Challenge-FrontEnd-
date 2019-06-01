@@ -22,8 +22,8 @@ import OlahAkun from '../../Aplikasi/components/OlahAkun';
 
 class Login extends Component {
   state = {
-    email: '',
-    password: ''
+    email: 'haris1@gmail.com',
+    password: '123qweasd'
   };
 
   submitLogin = e => {

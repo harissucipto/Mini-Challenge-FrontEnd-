@@ -8,19 +8,26 @@ import {
   FormGroup,
   Label,
   Input,
-  Col
+  Col,
+  Spinner
 } from 'reactstrap';
 
 class EditBarang extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
+    nama: '',
+    stok: 0,
+    satuan: '',
+    deskripsi: '',
+    loading: false
   };
 
   componentWillMount() {
-    const { id, nama, stok, satuan, deskripsi } = this.props.barang;
+    const { _id, nama, stok, satuan, deskripsi } = this.props.barang;
+    console.log(this.props.barang, 'ini barang');
 
     this.setState({
-      id,
+      _id,
       nama,
       stok,
       satuan,
@@ -33,18 +40,25 @@ class EditBarang extends Component {
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
 
   submit = () => {
-    const { id, nama, stok, satuan, deskripsi } = this.state;
+    const { _id, nama, stok, satuan, deskripsi } = this.state;
+    const { state } = this.props.akun;
+    console.log(state, 'ini state akun');
+
+    this.setState({ loading: true });
     this.props.aksi({
-      id,
+      _id,
       nama,
       stok,
       satuan,
-      deskripsi
+      deskripsi,
+      idUser: state._id,
+      jwt: state.jwt
     });
+    this.setState({ loading: false });
   };
 
   render() {
-    const { isOpen, nama, stok, satuan, deskripsi } = this.state;
+    const { isOpen, nama, stok, satuan, deskripsi, loading } = this.state;
 
     return (
       <>
@@ -60,6 +74,7 @@ class EditBarang extends Component {
         >
           <ModalHeader toggle={this.toggle}>Edit Data Barang</ModalHeader>
           <ModalBody>
+            {loading && <Spinner />}
             <FormGroup>
               <Label htmlFor="nama">Nama Barang</Label>
               <Input

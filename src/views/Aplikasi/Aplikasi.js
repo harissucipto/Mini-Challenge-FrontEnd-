@@ -10,7 +10,8 @@ import InformasiAkun from './components/InformasiAkun';
 
 class ProsesData extends Component {
   componentDidMount() {
-    this.props.stokBarang.fetch();
+    const { _id, jwt } = this.props.olahAkun.state;
+    this.props.stokBarang.fetch(_id, jwt);
   }
 
   render() {
@@ -24,7 +25,7 @@ class ProsesData extends Component {
       <div>
         <Row>
           <Col md={8}>
-            <KelolaBarang {...stokBarang} />
+            <KelolaBarang {...stokBarang} akun={olahAkun} />
           </Col>
           <Col md={4}>
             <InformasiAkun {...olahAkun} />
