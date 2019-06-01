@@ -9,7 +9,7 @@ const resetPengguna = {
   loading: false
 };
 
-const API = 'http://localhost:3000/';
+const API = 'https://api-stok-barang.herokuapp.com/';
 
 class OlahAkun extends Container {
   state = {

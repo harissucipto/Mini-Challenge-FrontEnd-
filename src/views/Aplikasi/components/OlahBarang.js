@@ -1,6 +1,6 @@
 import { Container } from 'unstated';
 
-const API = 'http://localhost:3000/';
+const API = 'https://api-stok-barang.herokuapp.com/';
 
 class OlahBarang extends Container {
   state = {
