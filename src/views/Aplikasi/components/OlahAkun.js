@@ -1,49 +1,42 @@
 import { Container } from 'unstated';
 
 const resetPengguna = {
-  uid: '',
-  nama: '',
+  jwt: '',
+  _id: '',
+  name: '',
   email: '',
-  nomorTelepon: '',
-  alamat: '',
-  password: '',
-  erorText: '',
   loading: false
 };
+
+const API = 'http://localhost:3000/';
 
 class OlahAkun extends Container {
   state = {
     ...resetPengguna
-    // uid: '3232',
-    // nama: 'harissucipto',
-    // email: 'haris@gmail.com',
-    // nomorTelepon: '08932034',
-    // alamat: 'JL SEI',
-    // password: '123',
-    // textEror: '',
-    // loading: false
   };
 
-  login = (email, password) => {
-    const correctEmail = email === 'haris@gmail.com';
-    this.setState({ erorText: '' });
-    const correctPassword = password === '123';
-    if (correctEmail && correctPassword) {
-      console.log('berhasil login');
-      this.setState({
-        uid: '3232',
-        nama: 'harissucipto',
-        email: 'haris@gmail.com',
-        nomorTelepon: '08932034',
-        alamat: 'JL SEI',
-        password: '123',
-        textEror: ''
-      });
-    } else {
-      this.setState({
-        erorText: 'Error Password atau Email Salah!'
-      });
+  login = async (email, password) => {
+    this.setState({ loading: true });
+    const loggedIn = await fetch(`${API}auth/signin`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({ email, password })
+    }).catch(err => {
+      this.setState({ loading: false, erorText: 'Koneksi Gangguan!' });
+    });
+
+    const respon = await loggedIn.json();
+
+    if (loggedIn.status === 200) {
+      const { user, token } = respon;
+      this.setState({ jwt: token, uid: user._id, ...user });
     }
+
+    this.setState({ loading: false, erorText: respon.error });
   };
 
   updateAkun = data => {

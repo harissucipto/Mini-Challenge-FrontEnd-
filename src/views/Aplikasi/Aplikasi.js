@@ -16,9 +16,9 @@ class ProsesData extends Component {
   render() {
     const { stokBarang, olahAkun } = this.props;
 
-    const { uid } = olahAkun.state;
+    const { _id } = olahAkun.state;
 
-    if (!uid) return <Redirect to="/login" />;
+    if (!_id) return <Redirect to="/login" />;
 
     return (
       <div>

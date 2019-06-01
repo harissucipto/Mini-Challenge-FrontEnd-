@@ -37,8 +37,7 @@ class Login extends Component {
 
     const { state } = this.props;
 
-    if (state.uid) return <Redirect to="/app" />;
-    console.log(state, 'ini belum terdaftar');
+    if (state._id) return <Redirect to="/app" />;
 
     return (
       <div className="app flex-row align-items-center">
