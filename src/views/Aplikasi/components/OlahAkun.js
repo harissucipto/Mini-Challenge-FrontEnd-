@@ -39,29 +39,8 @@ class OlahAkun extends Container {
     this.setState({ loading: false, erorText: respon.error });
   };
 
-  updateAkun = async data => {
-    this.setState({ loading: true });
-    const updated = await fetch(`${API}users/${this.state._id}`, {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.state.jwt
-      },
-      credentials: 'include',
-      body: JSON.stringify(data)
-    });
-
-    const resp = updated.json();
-
-    console.log(resp, 'resppon');
-  };
-
-  updatePassword = password => {
-    this.setState({ password });
-  };
-
-  logout = () => {
+  logout = async () => {
+    await fetch(`${API}auth/signout`);
     this.setState({
       ...resetPengguna
     });

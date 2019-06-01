@@ -6,16 +6,14 @@ import {
   ListGroupItem,
   ListGroupItemHeading,
   ListGroupItemText,
-  CardBody,
-  ButtonGroup
+  CardBody
 } from 'reactstrap';
 
-import UpdateInfromasiAkun from './UpdateInfromasiAkun';
-import UpdatePassword from './UpdatePassword';
+import LogoutButtton from './LogoutButtton';
 
 class InformasiAkun extends Component {
   render() {
-    const { state, updateAkun } = this.props;
+    const { state } = this.props;
     const { name, email } = state;
 
     return (
@@ -36,11 +34,7 @@ class InformasiAkun extends Component {
             </ListGroupItem>
 
             <ListGroupItem action>
-              <ListGroupItemHeading>Aksi</ListGroupItemHeading>
-              <ButtonGroup>
-                <UpdatePassword data={state} aksi={updateAkun} />
-                <UpdateInfromasiAkun data={state} aksi={updateAkun} />
-              </ButtonGroup>
+              <LogoutButtton />
             </ListGroupItem>
           </ListGroup>
         </CardBody>

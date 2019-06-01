@@ -5,8 +5,6 @@ import { AppNavbarBrand } from '@coreui/react';
 import logo from '../../assets/img/brand/logo.svg';
 import sygnet from '../../assets/img/brand/sygnet.svg';
 
-import LogoutButtton from '../../views/Aplikasi/components/LogoutButtton';
-
 const propTypes = {
   children: PropTypes.node
 };
@@ -24,8 +22,6 @@ class DefaultHeader extends Component {
           full={{ src: logo, width: 89, height: 25, alt: 'CoreUI Logo' }}
           minimized={{ src: sygnet, width: 30, height: 30, alt: 'CoreUI Logo' }}
         />
-
-        <LogoutButtton />
       </React.Fragment>
     );
   }

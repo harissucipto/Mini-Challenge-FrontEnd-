@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 import OlahAkun from './OlahAkun';
 
 const ProsesData = ({ logout }) => (
-  <Button onClick={logout} color="danger" className="mr-4 btn-pill">
+  <Button onClick={logout} color="danger" block>
     logout
   </Button>
 );
