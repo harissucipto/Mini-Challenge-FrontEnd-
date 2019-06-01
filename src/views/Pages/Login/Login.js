@@ -13,7 +13,8 @@ import {
   InputGroupAddon,
   InputGroupText,
   Row,
-  Alert
+  Alert,
+  Spinner
 } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 
@@ -48,7 +49,7 @@ class Login extends Component {
                 <CardBody>
                   <Form onSubmit={this.submitLogin}>
                     <h1>Login</h1>
-
+                    {state.loading && <Spinner />}
                     <p className="text-muted">Masuk Ke dalam Aplikasi</p>
                     {state.erorText && (
                       <Alert color="danger">{state.erorText}</Alert>

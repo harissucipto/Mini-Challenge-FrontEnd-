@@ -13,7 +13,8 @@ import {
   InputGroupAddon,
   InputGroupText,
   Row,
-  Alert
+  Alert,
+  Spinner
 } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import { Subscribe } from 'unstated';
@@ -50,6 +51,7 @@ class Register extends Component {
                   <Form onSubmit={this.submitRegister}>
                     <h1>Register</h1>
                     <p className="text-muted">Buat Akun Baru</p>
+                    {state.loading && <Spinner />}
                     {state.erorText && (
                       <Alert color="danger">{state.erorText}</Alert>
                     )}
