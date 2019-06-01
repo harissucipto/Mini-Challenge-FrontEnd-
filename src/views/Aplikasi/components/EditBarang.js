@@ -24,7 +24,6 @@ class EditBarang extends Component {
 
   componentWillMount() {
     const { _id, nama, stok, satuan, deskripsi } = this.props.barang;
-    console.log(this.props.barang, 'ini barang');
 
     this.setState({
       _id,
@@ -42,7 +41,6 @@ class EditBarang extends Component {
   submit = () => {
     const { _id, nama, stok, satuan, deskripsi } = this.state;
     const { state } = this.props.akun;
-    console.log(state, 'ini state akun');
 
     this.setState({ loading: true });
     this.props.aksi({

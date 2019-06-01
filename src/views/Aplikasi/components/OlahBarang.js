@@ -10,7 +10,6 @@ class OlahBarang extends Container {
   };
 
   fetch = async (_id, jwt) => {
-    console.log(_id, jwt, 'jwt');
     if (!_id || !jwt) return;
     this.setState({ loading: true });
 
@@ -31,7 +30,6 @@ class OlahBarang extends Container {
 
       if (getBarang.status === 200) {
         const { items } = resp;
-        console.log(items);
 
         this.setState({ data: items, loading: false });
       }
@@ -40,7 +38,7 @@ class OlahBarang extends Container {
 
   tambahData = async (baru, idUser, jwt) => {
     this.setState({ loading: true });
-    console.log(idUser, jwt, 'jwt');
+
     const created = await fetch(`${API}api/barang/${idUser}`, {
       method: 'POST',
       headers: {
@@ -57,10 +55,8 @@ class OlahBarang extends Container {
     const resp = await created.json();
 
     if (created.status === 200) {
-      console.log(resp, 'hasilnya');
       this.setState({
-        data: [...this.state.data, resp.barang],
-        loading: false
+        data: [...this.state.data, resp.barang]
       });
     }
 
@@ -70,7 +66,7 @@ class OlahBarang extends Container {
   hapusData = async (_id, idUser, jwt) => {
     this.setState({ loading: true });
 
-    const test = await fetch(`${API}api/barang/${idUser}&${_id}`, {
+    const deleted = await fetch(`${API}api/barang/${idUser}&${_id}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
@@ -82,14 +78,13 @@ class OlahBarang extends Container {
       this.setState({ loading: false, erorText: 'Koneksi Gangguan!' });
     });
 
-    const test1 = await test.json();
+    if (deleted.status === 200) {
+      this.setState({
+        data: this.state.data.filter(item => item._id !== _id)
+      });
+    }
 
-    console.log(test1, 'ini');
-
-    this.setState({
-      data: this.state.data.filter(item => item._id !== _id),
-      loading: false
-    });
+    this.setState({ loading: false });
   };
 
   editData = async newData => {
@@ -98,7 +93,7 @@ class OlahBarang extends Container {
 
     const dataRubah = { nama, stok, satuan, deskripsi };
 
-    await fetch(`${API}api/barang/${idUser}&${_id}`, {
+    const edited = await fetch(`${API}api/barang/${idUser}&${_id}`, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
@@ -111,11 +106,14 @@ class OlahBarang extends Container {
       this.setState({ loading: false, erorText: 'Koneksi Gangguan!' });
     });
 
-    const data = this.state.data.filter(item => item._id !== newData._id);
-    this.setState({
-      data: [...data, newData],
-      loading: false
-    });
+    if (edited.status === 200) {
+      const data = this.state.data.filter(item => item._id !== newData._id);
+      this.setState({
+        data: [...data, newData]
+      });
+    }
+
+    this.setState({ loading: false });
   };
 }
 
