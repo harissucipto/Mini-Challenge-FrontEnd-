@@ -12,11 +12,34 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
-  Row
+  Row,
+  Alert
 } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
+import { Subscribe } from 'unstated';
+
+import OlahAkun from '../../Aplikasi/components/OlahAkun';
 
 class Register extends Component {
+  state = {
+    name: '',
+    email: '',
+    password: ''
+  };
+
+  submitRegister = e => {
+    e.preventDefault();
+    const { name, email, password } = this.state;
+    this.props.register(email, password, name);
+  };
+
   render() {
+    const { name, email, password } = this.state;
+
+    const { state } = this.props;
+
+    if (state._id) return <Redirect to="/app" />;
+
     return (
       <div className="app flex-row align-items-center">
         <Container>
@@ -24,9 +47,12 @@ class Register extends Component {
             <Col md="9" lg="7" xl="6">
               <Card className="mx-4">
                 <CardBody className="p-4">
-                  <Form>
+                  <Form onSubmit={this.submitRegister}>
                     <h1>Register</h1>
                     <p className="text-muted">Buat Akun Baru</p>
+                    {state.erorText && (
+                      <Alert color="danger">{state.erorText}</Alert>
+                    )}
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -37,7 +63,9 @@ class Register extends Component {
                         required
                         type="text"
                         placeholder="Nama Pengguna"
-                        autoComplete="username"
+                        autoComplete="name"
+                        value={name}
+                        onChange={e => this.setState({ name: e.target.value })}
                       />
                     </InputGroup>
                     <InputGroup className="mb-3">
@@ -49,6 +77,8 @@ class Register extends Component {
                         type="email"
                         placeholder="Email"
                         autoComplete="email"
+                        value={email}
+                        onChange={e => this.setState({ email: e.target.value })}
                       />
                     </InputGroup>
                     <InputGroup className="mb-3">
@@ -62,6 +92,10 @@ class Register extends Component {
                         type="password"
                         placeholder="Password"
                         autoComplete="new-password"
+                        value={password}
+                        onChange={e =>
+                          this.setState({ password: e.target.value })
+                        }
                       />
                     </InputGroup>
 
@@ -84,4 +118,10 @@ class Register extends Component {
   }
 }
 
-export default Register;
+const FormRegister = () => {
+  return (
+    <Subscribe to={[OlahAkun]}>{data => <Register {...data} />}</Subscribe>
+  );
+};
+
+export default FormRegister;
