@@ -28,7 +28,7 @@ class KelolaBarang extends Component {
           <strong>Kelola Stok Barang</strong>
         </CardHeader>
         <CardBody>
-          <TambahBarang aksi={tambahData} />
+          <TambahBarang aksi={tambahData} akun={akun} />
           {!data.length ? (
             <p>Belum Ada Data</p>
           ) : (

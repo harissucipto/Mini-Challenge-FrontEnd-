@@ -10,7 +10,6 @@ import {
   Input,
   Col
 } from 'reactstrap';
-import shortid from 'shortid';
 
 class TambahBarang extends Component {
   state = {
@@ -27,13 +26,17 @@ class TambahBarang extends Component {
 
   submit = () => {
     const { nama, stok, satuan, deskripsi } = this.state;
-    this.props.aksi({
-      id: shortid(),
-      nama,
-      stok,
-      satuan,
-      deskripsi
-    });
+    this.props.aksi(
+      {
+        nama,
+        stok,
+        satuan,
+        deskripsi,
+        idUser: this.props.akun.state._id
+      },
+      this.props.akun.state._id,
+      this.props.akun.state.jwt
+    );
     this.setState({ isOpen: false });
   };
 
@@ -58,6 +61,7 @@ class TambahBarang extends Component {
             <FormGroup>
               <Label htmlFor="nama">Nama Barang</Label>
               <Input
+                required
                 type="text"
                 id="nama"
                 placeholder="Masukan Nama Barang"

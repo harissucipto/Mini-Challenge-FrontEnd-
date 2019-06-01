@@ -38,10 +38,33 @@ class OlahBarang extends Container {
     }
   };
 
-  tambahData = baru => {
-    this.setState({
-      data: [...this.state.data, baru]
+  tambahData = async (baru, idUser, jwt) => {
+    this.setState({ loading: true });
+    console.log(idUser, jwt, 'jwt');
+    const created = await fetch(`${API}api/barang/${idUser}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + jwt
+      },
+      credentials: 'include',
+      body: JSON.stringify(baru)
+    }).catch(err => {
+      this.setState({ loading: false, erorText: 'Koneksi Gangguan!' });
     });
+
+    const resp = await created.json();
+
+    if (created.status === 200) {
+      console.log(resp, 'hasilnya');
+      this.setState({
+        data: [...this.state.data, resp.barang],
+        loading: false
+      });
+    }
+
+    this.setState({ loading: false });
   };
 
   hapusData = async (_id, idUser, jwt) => {
